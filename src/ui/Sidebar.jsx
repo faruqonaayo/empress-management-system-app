@@ -12,7 +12,11 @@ export default function Sidebar({ children }) {
           icon="./icons/category.svg"
           link="/categories"
         />
-        <NavButton text="Promotions" icon="./icons/discount.svg" />
+        <NavButton
+          text="Promotions"
+          icon="./icons/discount.svg"
+          link="/promotions"
+        />
         <NavButton text="Orders" icon="./icons/van.svg" />
         <NavButton text="Customers" icon="./icons/users.svg" />
         <NavButton text="Messages" icon="./icons/messages.svg" />

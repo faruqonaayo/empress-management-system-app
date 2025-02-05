@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import Modal from "./Modal";
 import CreateCategoryForm from "../features/category/CreateCategoryForm";
+import CreatePromotionForm from "../features/promotion/CreatePromotionForm";
 
 export default function NavButton({
   text,
@@ -47,9 +48,9 @@ export default function NavButton({
                   Category
                 </button>
               </Modal.Open>
-              <Modal.Open>
+              <Modal.Open content={<CreatePromotionForm />}>
                 <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-white hover:text-[#11296B]">
-                  Promotions
+                  Promotion
                 </button>
               </Modal.Open>
             </Modal>

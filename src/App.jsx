@@ -6,6 +6,7 @@ import AppLayout from "./ui/AppLayout";
 import CategoriesPage from "./pages/CategoriesPage";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import PromotionsPage from "./pages/PromotionsPage";
 
 export default function App() {
   const queryClient = new QueryClient();
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/" element={<AppLayout />}>
             <Route index element={<HomePage />} />
             <Route path="/categories" element={<CategoriesPage />} />
+            <Route path="/promotions" element={<PromotionsPage />} />
           </Route>
         </Routes>
         <Toaster
