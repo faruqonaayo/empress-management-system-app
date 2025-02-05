@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
-import { addNewCategory } from "../../services/category";
-import Heading from "../../ui/Heading";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
-export default function CreateCategoryForm() {
+import { addNewCategory, updateCategory } from "../../services/category";
+import Heading from "../../ui/Heading";
+
+export default function CreateCategoryForm({ update = null }) {
   const queryClient = useQueryClient();
 
   const { register, reset, handleSubmit } = useForm();
 
-  const mutation = useMutation({
+  const addMutation = useMutation({
     mutationFn: addNewCategory,
     onSuccess: (res) => {
       if (res.statusCode === 201) {
@@ -22,8 +23,25 @@ export default function CreateCategoryForm() {
     },
   });
 
+  const updateMutation = useMutation({
+    mutationFn: updateCategory,
+    onSuccess: (res) => {
+      if (res.statusCode === 200) {
+        toast.success(res.message);
+        reset();
+        queryClient.invalidateQueries(["categories"]);
+      } else {
+        toast.error(res.message);
+      }
+    },
+  });
+
   async function submitAction(data) {
-    mutation.mutate(data);
+    if (update) {
+      updateMutation.mutate({ id: update._id, ...data });
+    } else {
+      addMutation.mutate(data);
+    }
   }
 
   function errorAction(error) {
@@ -36,7 +54,7 @@ export default function CreateCategoryForm() {
       onSubmit={handleSubmit(submitAction, errorAction)}
     >
       <Heading level={4} className="mb-2 text-center">
-        New Category
+        {update ? "Update Category" : "New Category"}
       </Heading>
       <div className="mb-2 flex gap-2">
         <label className="font-medium">Category Name: </label>
@@ -46,6 +64,7 @@ export default function CreateCategoryForm() {
           {...register("categoryName", {
             required: "Category name field is required",
           })}
+          defaultValue={update ? update.categoryName : ""}
         />
       </div>
       <div className="mb-2 flex gap-2">
@@ -54,7 +73,7 @@ export default function CreateCategoryForm() {
           type="file"
           className="w-[200px] rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
           {...register("categoryImage", {
-            required: "Category image field is required",
+            required: update ? false : "Category image field is required",
           })}
           accept="image/*"
         />

@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { createPortal } from "react-dom";
-import CreateCategoryForm from "../features/category/CreateCategoryForm";
 
 const ModalContext = createContext();
 
@@ -32,7 +31,7 @@ function Window() {
 
   return createPortal(
     <div className="absolute top-0 flex h-dvh w-full items-center justify-center bg-[#333533]/50 backdrop-blur-xs">
-      <div className="rounded-md bg-[#d6d6d6] p-2">
+      <div className="rounded-md bg-[#EDEDED] p-2">
         <div className="flex w-full justify-end">
           <button
             className="cursor-pointer rounded-sm bg-red-500 p-1 transition-all hover:bg-red-600"

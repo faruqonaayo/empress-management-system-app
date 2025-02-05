@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import Modal from "./Modal";
 import CreateCategoryForm from "../features/category/CreateCategoryForm";
 
@@ -14,7 +15,7 @@ export default function NavButton({
 
   if (dropDown) {
     return (
-      <div className="flex cursor-pointer flex-col rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-[#464846]">
+      <div className="flex cursor-pointer flex-col gap-1 rounded-lg bg-transparent px-2 py-2 font-medium text-[#11296B]/80 shadow transition-all hover:shadow-[#1E96FC]">
         <div
           className="flex items-center justify-between"
           onClick={() => setDropDownOpen(!dropDownOpen)}
@@ -33,23 +34,22 @@ export default function NavButton({
         </div>
 
         {dropDownOpen && (
-          <div className="mt-2 flex flex-col items-end">
+          <div className="mt-2 flex flex-col items-end rounded-lg bg-[#1E96FC]/70 p-2">
             <Modal>
-              <Modal.Window>hello</Modal.Window>
-
+              <Modal.Window></Modal.Window>
               <Modal.Open>
-                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-[#ffd100] hover:text-black">
+                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-white hover:text-[#11296B]">
                   Product
                 </button>
               </Modal.Open>
               <Modal.Open content={<CreateCategoryForm />}>
-                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-[#ffd100] hover:text-black">
+                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-white hover:text-[#11296B]">
                   Category
                 </button>
               </Modal.Open>
               <Modal.Open>
-                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-[#ffd100] hover:text-black">
-                  Promo
+                <button className="flex cursor-pointer items-center justify-end gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-white hover:text-[#11296B]">
+                  Promotions
                 </button>
               </Modal.Open>
             </Modal>
@@ -61,7 +61,7 @@ export default function NavButton({
   return (
     <NavLink
       to={link}
-      className="flex items-center justify-start gap-4 rounded-sm bg-transparent px-2 py-1 text-white transition-all hover:bg-[#464846]"
+      className="flex items-center justify-start gap-4 rounded-lg border-[#11296B]/20 bg-transparent px-2 py-2 font-medium text-[#11296B]/80 shadow transition-all hover:text-[#11296B] hover:shadow-[#1E96FC]"
     >
       <img src={icon} alt={icon} className="w-6" />
       <span className="text-base">{text}</span>

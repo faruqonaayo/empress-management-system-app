@@ -37,6 +37,28 @@ export async function fetchAllCategories() {
   }
 }
 
+export async function updateCategory(input) {
+  try {
+    const id = input.id;
+
+    const categoryForm = new FormData();
+    categoryForm.append("categoryName", input.categoryName);
+    categoryForm.append("categoryImage", input.categoryImage[0]);
+
+    const res = await fetch(`${URL}/api/admin/category/update?id=${id}`, {
+      method: "PATCH",
+      headers: {},
+      body: categoryForm,
+    });
+
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function deleteCategory(id) {
   try {
     const res = await fetch(`${URL}/api/admin/category/delete?id=${id}`, {
