@@ -50,37 +50,37 @@ export default function CreateCategoryForm({ update = null }) {
 
   return (
     <form
-      className="mt-2 w-[350px] rounded-md bg-white p-2"
+      className="mt-2 w-[350px] rounded-md bg-white p-4 shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
       onSubmit={handleSubmit(submitAction, errorAction)}
     >
-      <Heading level={4} className="mb-2 text-center">
+      <Heading level={4} className="mb-4 text-center text-[#11296B]">
         {update ? "Update Category" : "New Category"}
       </Heading>
-      <div className="mb-2 flex gap-2">
-        <label className="font-medium">Category Name: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">Category Name:</label>
         <input
           type="text"
-          className="w-[200px] rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("categoryName", {
             required: "Category name field is required",
           })}
           defaultValue={update ? update.categoryName : ""}
         />
       </div>
-      <div className="mb-2 flex gap-2">
-        <label className="font-medium">Category Image: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">Category Image:</label>
         <input
           type="file"
-          className="w-[200px] rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("categoryImage", {
             required: update ? false : "Category image field is required",
           })}
           accept="image/*"
         />
       </div>
-      <div className="mt-1 flex w-full justify-end">
-        <button className="cursor-pointer rounded-md bg-[#333533] px-2 py-1 font-medium text-white transition-all hover:bg-black">
-          Add Category
+      <div className="mt-4 flex w-full justify-end">
+        <button className="cursor-pointer rounded-md bg-[#1E96FC] px-4 py-2 font-medium text-white transition-all duration-300 ease-in-out hover:bg-[#11296B]">
+          {update ? "Update Category" : "Add Category"}
         </button>
       </div>
     </form>

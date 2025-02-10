@@ -1,6 +1,6 @@
 import NavButton from "./NavButton";
 
-export default function Sidebar({ children }) {
+export default function Sidebar() {
   return (
     <div className="flex h-full w-80 flex-col justify-between gap-1 bg-white px-4 py-4 shadow-xl">
       <div className="flex flex-col justify-center gap-2">

@@ -1,10 +1,18 @@
+import DashboardHeader from "../features/dashboard/DashboardHeader";
+import DashboardStats from "../features/dashboard/DashboardStats";
+import InventoryOverview from "../features/dashboard/InventoryOverview";
+import RecentOrders from "../features/dashboard/RecentOrders";
+
 export default function HomePage() {
   return (
-    <div className="h-full w-full bg-[#EDEDED]">
-      <div className="h-20 bg-white px-6 py-2">
-        <h1 className="font-montserrat text-2xl font-bold">
-          Welcome back, Admin
-        </h1>
+    <div className="min-h-screen w-full overflow-y-auto bg-[#EDEDED]">
+      <div className="container mx-auto px-4 py-6">
+        <DashboardHeader />
+        <DashboardStats />
+
+        {/* <!-- Recent Orders --> */}
+        <RecentOrders />
+        <InventoryOverview />
       </div>
     </div>
   );

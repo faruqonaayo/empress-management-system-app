@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
-import { addNewCategory, updateCategory } from "../../services/category";
 import Heading from "../../ui/Heading";
 import { addNewPromotion, updatePromotion } from "../../services/promotion";
 
@@ -10,8 +9,6 @@ export default function CreatePromotionForm({ update = null }) {
   const queryClient = useQueryClient();
 
   const { register, reset, handleSubmit } = useForm();
-
-  console.log(update);
 
   const addMutation = useMutation({
     mutationFn: addNewPromotion,
@@ -53,50 +50,52 @@ export default function CreatePromotionForm({ update = null }) {
 
   return (
     <form
-      className="mt-2 w-[350px] rounded-md bg-white p-2"
+      className="mt-2 w-[350px] rounded-md bg-white p-4 shadow-lg transition-all duration-300 ease-in-out hover:shadow-xl"
       onSubmit={handleSubmit(submitAction, errorAction)}
     >
-      <Heading level={4} className="mb-2 text-center">
+      <Heading level={4} className="mb-4 text-center text-[#11296B]">
         {update ? "Update Promotion" : "New Promotion"}
       </Heading>
-      <div className="mb-2 flex flex-col gap-2">
-        <label className="font-medium">Promotion Name: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">Promotion Name:</label>
         <input
           type="text"
-          className="w-full rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("promotionName", {
             required: "Promotion name field is required",
           })}
           defaultValue={update ? update.promotionName : ""}
         />
       </div>
-      <div className="mb-2 flex flex-col gap-2">
-        <label className="font-medium">Promotion Discount: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">
+          Promotion Discount:
+        </label>
         <input
           type="number"
-          className="w-full rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("discount", {
             required: "Promotion discount field is required",
           })}
           defaultValue={update ? update.discount : ""}
         />
       </div>
-      <div className="mb-2 flex flex-col gap-2">
-        <label className="font-medium">Promotion Expiry: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">Promotion Expiry:</label>
         <input
           type="date"
-          className="w-full rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("expiry", {
             required: "Promotion expiry field is required",
           })}
           defaultValue={update ? update.expiry.split("T")[0] : ""}
         />
       </div>
-      <div className="mb-2 flex flex-col gap-2">
-        <label className="font-medium">Cover Image: </label>
+      <div className="mb-4 flex flex-col gap-2">
+        <label className="font-medium text-[#11296B]">Cover Image:</label>
         <input
           type="file"
-          className="w-full rounded-md bg-[#d6d6d6] px-1 py-0.5 text-sm"
+          className="w-full rounded-md bg-[#EDEDED] px-2 py-1 text-sm text-[#11296B] focus:ring-2 focus:ring-[#1E96FC] focus:outline-none"
           {...register("promotionImage", {
             required: update ? false : "Promotion image field is required",
           })}
@@ -104,8 +103,8 @@ export default function CreatePromotionForm({ update = null }) {
         />
       </div>
       <div className="mt-4 flex w-full justify-end">
-        <button className="cursor-pointer rounded-md bg-[#333533] px-2 py-1 font-medium text-white transition-all hover:bg-black">
-          Add Promotion
+        <button className="cursor-pointer rounded-md bg-[#1E96FC] px-4 py-2 font-medium text-white transition-all duration-300 ease-in-out hover:bg-[#11296B]">
+          {update ? "Update Promotion" : "Add Promotion"}
         </button>
       </div>
     </form>

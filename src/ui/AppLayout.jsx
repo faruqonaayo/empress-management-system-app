@@ -6,9 +6,11 @@ export default function AppLayout() {
   return (
     <>
       <AppHeader />
-      <main className="flex h-[91vh] w-full">
+      <main className="font-lato flex h-[91vh] w-full">
         <Sidebar />
-        <Outlet />
+        <div className="h-full overflow-y-scroll w-full">
+          <Outlet />
+        </div>
       </main>
       <footer></footer>
     </>

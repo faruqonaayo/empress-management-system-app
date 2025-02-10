@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+
 import Table from "../../ui/Table";
 import URL from "../../services/backendUrl";
 import toast from "react-hot-toast";
@@ -24,7 +25,7 @@ export default function PromotionTable() {
   });
 
   if (isLoading) {
-    return <p>loading...</p>;
+    return <p>Loading...</p>;
   }
 
   if (!data) {
@@ -33,52 +34,60 @@ export default function PromotionTable() {
 
   const promotions = data.data;
 
-  console.log(promotions);
-
   return (
     <Table>
-      <Table.TableHead className="cursor-pointer rounded-t-lg bg-[#d6d6d6] px-2 py-4">
+      <Table.TableHead className="cursor-pointer rounded-t-lg bg-[#11296B] px-2 py-4 shadow transition-all duration-300 ease-in-out hover:shadow-lg">
         <Table.TableHeading>
-          <h3 className="font-montserrat w-40 text-center font-bold">Image</h3>
+          <h3 className="font-montserrat w-40 text-center font-bold text-white">
+            Image
+          </h3>
         </Table.TableHeading>
         <Table.TableHeading>
-          <h3 className="font-montserrat w-40 text-center font-bold">
+          <h3 className="font-montserrat w-40 text-center font-bold text-white">
             Promotion Name
           </h3>
         </Table.TableHeading>
         <Table.TableHeading>
-          <h3 className="font-montserrat w-40 text-center font-bold">
+          <h3 className="font-montserrat w-40 text-center font-bold text-white">
             Discount
           </h3>
         </Table.TableHeading>
         <Table.TableHeading>
-          <h3 className="font-montserrat w-40 text-center font-bold">Expiry</h3>
+          <h3 className="font-montserrat w-40 text-center font-bold text-white">
+            Expiry
+          </h3>
         </Table.TableHeading>
         <Table.TableHeading>
-          <h3 className="font-montserrat w-32 text-center font-bold">Action</h3>
+          <h3 className="font-montserrat w-32 text-center font-bold text-white">
+            Action
+          </h3>
         </Table.TableHeading>
       </Table.TableHead>
       <Table.TableBody>
         {promotions.map((promotion) => (
           <Table.TableRow
             key={promotion._id}
-            className="cursor-pointer border-b border-[#d6d6d6] py-1 transition-all hover:bg-[#efefef]"
+            className="cursor-pointer border-b border-[#EDEDED] py-2 transition-all duration-300 ease-in-out hover:bg-[#F5F5F5] hover:shadow-md"
           >
             <div className="flex w-40 items-center justify-center">
               <img
                 src={`${URL}/${promotion.promotionImage}`}
-                alt={promotion.categoryName}
-                className="h-14 w-20 rounded-md"
+                alt={promotion.promotionName}
+                className="h-14 w-20 rounded-md transition-all duration-300 ease-in-out hover:scale-110"
               />
             </div>
             <div className="flex w-40 items-center justify-center">
-              <p className="font-medium">{promotion.promotionName}</p>
+              <p className="font-medium text-[#11296B]">
+                {promotion.promotionName}
+              </p>
             </div>
             <div className="flex w-40 items-center justify-center">
-              <p className="font-medium">{promotion.discount}</p>
+              <p className="font-medium text-[#11296B]">{promotion.discount}</p>
             </div>
             <div className="flex w-40 items-center justify-center">
-              <p className="font-medium">{promotion.expiry.split("T")[0]}</p>
+              <p className="font-medium text-[#11296B]">
+                {promotion.expiry.split("T")[0]}
+              </p>
             </div>
 
             <div className="flex w-32 items-center justify-end gap-2">
@@ -87,17 +96,17 @@ export default function PromotionTable() {
                 <Modal.Open
                   content={<CreatePromotionForm update={promotion} />}
                 >
-                  <button className="cursor-pointer rounded-full bg-[#d6d6d6] p-0.5 shadow transition-all hover:bg-[#c1c0c0]">
-                    <img src="./icons/pencil.svg" alt="" className="w-6" />
+                  <button className="cursor-pointer rounded-full bg-[#e4f2ff] p-1 shadow transition-all duration-300 ease-in-out hover:scale-110 hover:bg-[#11296B]">
+                    <img src="./icons/pencil.svg" alt="Edit" className="w-5" />
                   </button>
                 </Modal.Open>
               </Modal>
 
               <button
-                className="cursor-pointer rounded-full bg-[#d6d6d6] p-0.5 shadow transition-all hover:bg-[#c1c0c0]"
+                className="cursor-pointer rounded-full bg-[#FFDB57] p-1 shadow transition-all duration-300 ease-in-out hover:scale-110 hover:bg-[#FFCB05]"
                 onClick={() => deleteMutation.mutate(promotion._id)}
               >
-                <img src="./icons/trash.svg" alt="" className="w-6" />
+                <img src="./icons/trash.svg" alt="Delete" className="w-5" />
               </button>
             </div>
           </Table.TableRow>
